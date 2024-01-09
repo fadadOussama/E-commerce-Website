@@ -1,0 +1,50 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+// Hero section
+.hero {
+  padding-block-start: 0;
+  &-card {
+    padding: 100px 15px;
+    background-color: $light-gray;
+    background-position: 40%;
+  }
+  &-text {
+    font-size: $fs-6;
+    margin-block: 16px 30px;
+  }
+  & .price {
+    color: $black;
+    font-size: $fs-5;
+    font-weight: $fw-600;
+    margin-block-end: 20px;
+  }
+
+  & .scrollbar-item {
+    min-width: 100%;
+    scroll-snap-align: end;
+  }
+}
+
+// Small Media
+@media (min-width: 575px) {
+  .hero-card {
+    padding-inline: 70px;
+  }
+  .hero-text {
+    max-width: 30ch;
+  }
+}
+
+// Super large media
+@media (min-width: 1200px) {
+  .hero {
+    &-card {
+      padding: 120px 100px;
+    }
+    &-text {
+      max-width: 40ch;
+    }
+  }
+}

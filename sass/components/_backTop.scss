@@ -1,0 +1,28 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+.back-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 0;
+  background-color: $white;
+  color: $hoockers-green;
+  font-size: 22px;
+  padding: 13px;
+  border-radius: 50%;
+  box-shadow: $shadow-1;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition-1;
+  &:is(:hover, :focus) {
+    background-color: $hoockers-green;
+    color: $white;
+  }
+  &.active {
+    transform: translateX(-30px);
+    opacity: 1;
+    visibility: visible;
+  }
+}

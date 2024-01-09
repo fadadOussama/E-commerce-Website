@@ -1,0 +1,38 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+.feature {
+  text-align: center;
+  .section-title {
+    margin-block-end: 40px;
+  }
+  &-card {
+    .card-icon {
+      width: 100px;
+      margin-inline: auto;
+    }
+    .card-title {
+      margin-block: 35px 15px;
+    }
+    .card-text {
+      font-size: $fs-7;
+    }
+  }
+}
+
+// Super large media
+@media (min-width: 1200px) {
+  .feature {
+    .section-title {
+      margin-block-end: 60px;
+    }
+    .flex-list {
+      gap: 100px;
+      padding-inline: 50px;
+    }
+    .flex-item {
+      max-width: calc(33.33% - 66.66px);
+    }
+  }
+}

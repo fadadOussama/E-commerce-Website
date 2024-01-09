@@ -1,0 +1,37 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+.blog {
+  padding-block-end: calc($section-padding * 2);
+  .section-title {
+    text-align: center;
+    margin-block-end: 40px;
+  }
+  &-card {
+    .card-banner img {
+      transition: $transition-2;
+    }
+    &:is(:hover, :focus-within) .card-banner img {
+      transform: scale(1.2);
+    }
+    .card-title {
+      text-align: center;
+      margin-block: 30px 20px;
+      transition: $transition-1;
+      &:is(:hover, :focus) {
+        color: $hoockers-green;
+      }
+    }
+    .btn-link {
+      justify-content: center;
+    }
+  }
+}
+
+// Large media
+@media (min-width: 992px) {
+  .blog {
+    padding-block-end: 100px;
+  }
+}

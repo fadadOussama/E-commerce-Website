@@ -1,0 +1,64 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+.banner-list {
+  display: grid;
+  gap: 30px;
+}
+
+.banner-card {
+  min-height: 420px;
+  padding: 30px;
+  .card-subtitle {
+    color: $black;
+    font-size: $fs-6;
+    font-weight: $fw-600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  & :is(.card-subtitle, .card-title) {
+    text-shadow: 0 0 2px $cultured-2;
+  }
+  &-1 {
+    .card-title {
+      margin-block: 10px 30px;
+    }
+  }
+  .card-text {
+    color: $black;
+    font-size: $fs-7;
+    margin-block: 10px 25px;
+  }
+}
+
+// Small Media
+@media (min-width: 575px) {
+  .banner-card .card-text {
+    max-width: 30ch;
+  }
+}
+
+// Medium Media
+@media (min-width: 768px) {
+  .banner-list {
+    grid-template-columns: 1fr 0.7fr;
+  }
+  .banner-card {
+    padding: 50px;
+  }
+}
+
+// Large media
+@media (min-width: 992px) {
+  .banner-list {
+    grid-template-columns: 1fr 0.5fr;
+  }
+}
+
+// Super large media
+@media (min-width: 1200px) {
+  .banner-card-1 .card-title {
+    max-width: 15ch;
+  }
+}

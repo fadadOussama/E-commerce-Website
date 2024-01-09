@@ -1,0 +1,592 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+// Reused style
+.container {
+  padding-inline: 15px;
+}
+
+.section {
+  padding-block: $section-padding;
+}
+
+.has-bg-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.h1,
+.h2,
+.h3,
+.h2-large {
+  color: $black;
+  line-height: 1.3;
+  font-weight: $fw-600;
+}
+
+.h1 {
+  font-size: $fs-1;
+  line-height: 1.2;
+}
+
+.h2 {
+  font-size: $fs-3;
+}
+
+.h2-large {
+  font-size: $fs-2;
+}
+
+.h3 {
+  font-size: $fs-4;
+}
+
+.btn {
+  font-weight: $fw-600;
+  max-width: max-content;
+  padding: 10px 30px;
+  border-radius: $radius-3;
+  transition: $transition-1;
+}
+
+.btn {
+  &-primary {
+    background-color: $black;
+    color: $white;
+    &:is(:hover, :focus-visible) {
+      background-color: $hoockers-green;
+    }
+  }
+  &-secondary {
+    background-color: $white;
+    color: $black;
+    box-shadow: $shadow-2;
+    &:is(:hover, :focus-visible) {
+      background-color: $black;
+      color: $white;
+    }
+  }
+}
+
+.has-scrollbar {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-block-end: 15px;
+  margin-block-end: -15px;
+  scroll-snap-type: x mandatory;
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  &:is(:hover, :focus-within)::-webkit-scrollbar-track {
+    background-color: hsl(0, 0%, 98%);
+  }
+  &:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
+    background-color: hsl(0, 0%, 70%);
+  }
+}
+
+.scrollbar-item {
+  min-width: 100%;
+  scroll-snap-align: end;
+}
+
+.has-before,
+.has-after {
+  position: relative;
+  z-index: 1;
+}
+
+.has-before::before,
+.has-after::after {
+  content: "";
+  position: absolute;
+}
+
+.hover\:shine {
+  overflow: hidden;
+  &::before {
+    top: 0;
+    left: -140%;
+    bottom: 0;
+    width: 100%;
+    background-image: $gradient;
+    transform: skewX(-25deg);
+    transition: $transition-2;
+    z-index: 1;
+  }
+}
+
+.hover\:shine:is(:hover, :focus-within)::before {
+  animation: effectShine 1s ease forwards;
+}
+
+@keyframes effectShine {
+  from {
+    transform: skewX(-25deg) translateX(0);
+  }
+  to {
+    transform: skewX(-25deg) translateX(250%);
+  }
+}
+
+.hover\:shine .has-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: $transition-2;
+}
+
+.hover\:shine:is(:hover, :focus) .has-bg-image {
+  transform: scale(1.15);
+}
+
+.btn-link {
+  color: $black;
+  font-weight: $fw-600;
+  transition: $transition-1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-arrow {
+  position: relative;
+  width: 10px;
+  height: 2px;
+  background-color: $black;
+  transition: $transition-1;
+  &::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    border-radius: 2px;
+    width: 8px;
+    height: 1.5px;
+    background-color: $black;
+    transform: rotate(-45deg);
+    right: -3px;
+    bottom: -2px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    border-radius: 2px;
+    width: 8px;
+    height: 1.5px;
+    background-color: $black;
+    transform: rotate(45deg);
+    right: -3px;
+    bottom: 2px;
+  }
+}
+
+.btn-link:is(:hover, :focus-visible) .icon-arrow {
+  width: 14px;
+  background-color: $hoockers-green;
+}
+
+.btn-link:is(:hover, :focus-visible) .icon-arrow::before {
+  background-color: $hoockers-green;
+}
+
+.btn-link:is(:hover, :focus-visible) .icon-arrow::after {
+  background-color: $hoockers-green;
+}
+
+.btn-link:is(:hover, :focus-visible) {
+  color: $hoockers-green;
+}
+
+.img-holder {
+  aspect-ratio: var(--width) / var(--height);
+  background-color: $light-gray;
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  max-width: max-content;
+  background-color: $hoockers-green;
+  color: $white;
+  font-weight: $fw-700;
+  padding-inline: 12px;
+  border-radius: $radius-3;
+}
+
+.flex-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* Media queries */
+// Small Media
+@media (min-width: 575px) {
+  .container {
+    max-width: 540px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  :is(.header, .hero) .container {
+    max-width: unset;
+  }
+  .has-scrollbar {
+    gap: 30px;
+  }
+  .scrollbar-item {
+    min-width: calc(50% - 15px);
+  }
+}
+
+// Medium Media
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 5.6rem;
+  }
+  .container {
+    max-width: 730px;
+  }
+  .flex-item {
+    max-width: calc(50% - 15px);
+  }
+}
+// Large media
+@media (min-width: 992px) {
+  .section {
+    padding-block: 50px;
+  }
+  .container {
+    max-width: 960px;
+  }
+  .scrollbar-item {
+    min-width: calc(33.33% - 20px);
+  }
+  .flex-item {
+    max-width: calc(33.33% - 20px);
+  }
+}
+// Super large media
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1300px;
+  }
+  .scrollbar-item {
+    min-width: calc(20% - 24px);
+  }
+}
+
+/* Header section */
+.header-action-btn:not(:first-child),
+.navbar,
+.header .input-wrapper {
+  display: none;
+}
+
+.header {
+  position: relative;
+  padding-block-end: 80px;
+}
+
+.alert {
+  background-color: $pale-spring-bud;
+  color: $black;
+  font-size: $fs-7;
+  text-transform: uppercase;
+  font-weight: $fw-700;
+  letter-spacing: 2px;
+  text-align: center;
+  padding-block: 15px;
+}
+
+.header-top {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  padding-block: 26px;
+  z-index: 4;
+  &.active {
+    position: fixed;
+    top: -80px;
+    bottom: auto;
+    box-shadow: $shadow-1;
+    transform: translateY(100%);
+    transition: $transition-2;
+  }
+  &.header-hide {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.nav-open-btn {
+  width: 26px;
+  display: grid;
+  padding-block: 5px;
+  gap: 6px;
+  .line {
+    height: 2px;
+    background-color: $black;
+  }
+  .line-1 {
+    width: 15px;
+  }
+  .line-3 {
+    width: 18px;
+  }
+}
+
+.header-action-btn {
+  font-size: 28px;
+  transition: $transition-1;
+  &:is(:hover, :focus-visible) {
+    color: $black_70;
+  }
+}
+
+// Navbar
+.sidebar {
+  z-index: 5;
+}
+
+.mobile-sidebar {
+  background-color: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: 350px;
+  width: 100%;
+  padding: 25px 40px;
+  z-index: 6;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: 0.2s $cubic-in;
+  &.active {
+    visibility: visible;
+    transform: translateX(0);
+    transition: 0.4s $cubic-out;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-block-end: 55px;
+    align-items: center;
+  }
+}
+
+.nav-close-btn {
+  font-size: 28px;
+  color: $hoockers-green;
+  & ion-icon {
+    --ionicon-stroke-width: 40px;
+  }
+}
+
+.mobile-sidebar {
+  .navbar-link {
+    color: $black;
+    padding-block: 5px;
+    text-transform: uppercase;
+    font-weight: $fw-600;
+    font-size: $fs-8;
+    transition: $transition-1;
+    letter-spacing: 1px;
+    &:is(:hover, :focus-visible) {
+      color: $hoockers-green;
+    }
+  }
+}
+
+.overlay {
+  background-color: transparent;
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: $transition-1;
+  &.active {
+    background-color: $black_50;
+    pointer-events: all;
+  }
+}
+
+// Small Media
+@media (min-width: 575px) {
+  .alert {
+    padding-block: 8px;
+  }
+
+  .header-top {
+    .container {
+      padding-inline: 30px;
+    }
+  }
+}
+
+// Super large media
+@media (min-width: 1200px) {
+  .header .input-wrapper,
+  .header-action-btn:not(:first-child),
+  .navbar {
+    display: block;
+  }
+
+  .nav-open-btn {
+    display: none;
+  }
+
+  .header {
+    padding-block-end: 60px;
+    margin-block-end: 10px;
+  }
+
+  .header-top {
+    position: unset;
+    padding-block: 24px 0;
+    &:is(.active, .header-hide) {
+      all: unset;
+    }
+    .container {
+      flex-wrap: wrap;
+    }
+  }
+  .search-field {
+    width: 270;
+    font-size: $fs-7;
+    border: 2px solid $hoockers-green_20;
+    border-radius: $radius-3;
+    outline: none;
+    padding: 10px 40px 10px 20px;
+    transition: $transition-1;
+    &::placeholder {
+      color: $spanish-gray;
+    }
+    &:focus {
+      border-color: $black;
+    }
+  }
+  .header {
+    .input-wrapper {
+      position: relative;
+    }
+    .search-submit {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      ion-icon {
+        --ionicon-stroke-width: 40px;
+      }
+    }
+    .logo {
+      margin-inline-end: 60px;
+    }
+    &-actions {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    &-action-btn {
+      position: relative;
+      .btn-badge {
+        position: absolute;
+        top: 0;
+        right: -10px;
+        background-color: $black;
+        color: $white;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 20px;
+        font-size: $fs-9;
+        line-height: 1.4;
+      }
+      &:last-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn-text {
+        font-size: $fs-7;
+        font-weight: $fw-700;
+        margin-block-start: 3px;
+      }
+    }
+  }
+  .navbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $white;
+    padding-block: 18px;
+    z-index: 4;
+    .navbar-list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 45px;
+    }
+    .navbar-link {
+      position: relative;
+      color: $black;
+      font-size: $fs-7;
+      font-weight: $fw-600;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $black;
+        transition: $transition-1;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      &:is(:hover, :focus)::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .header-top.active {
+    .navbar {
+      position: fixed;
+      top: -80px;
+      bottom: auto;
+      padding-block: 28px;
+      box-shadow: $shadow-1;
+      transform: translateY(100%);
+      transition: $transition-2;
+    }
+  }
+  .header-top.header-hide {
+    .navbar {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+  }
+}

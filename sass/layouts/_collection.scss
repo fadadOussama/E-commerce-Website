@@ -1,0 +1,42 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+.collection {
+  padding-block-start: 0;
+  &-list {
+    display: grid;
+    gap: 15px;
+  }
+  &-card {
+    background-color: $light-gray;
+    min-height: 400px;
+    padding: 40px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    .card-title {
+      margin-block-end: 12px;
+    }
+    .card-text {
+      margin-block-end: auto;
+      color: $black;
+      font-size: $fs-6;
+      font-weight: $fw-600;
+    }
+  }
+}
+
+// Medium Media
+@media (min-width: 768px) {
+  .collection-card {
+    min-height: 450px;
+  }
+}
+
+// Large media
+@media (min-width: 992px) {
+  .collection-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}

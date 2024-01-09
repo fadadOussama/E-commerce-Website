@@ -1,0 +1,88 @@
+@use "../base/colors" as *;
+@use "../base/typography" as *;
+@use "../base/variables" as *;
+
+.shop {
+  .title-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-block-end: 50px;
+  }
+  &-card {
+    .card-banner {
+      position: relative;
+      overflow: hidden;
+    }
+    .badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .card-actions {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+      display: grid;
+      gap: 10px;
+      opacity: 0;
+      transition: $transition-2;
+    }
+    .action-btn {
+      background-color: $white;
+      font-size: 24px;
+      padding: 12px;
+      border-radius: 50%;
+      transition: $transition-1;
+      &:is(:hover, :focus) {
+        background-color: $black;
+        color: $white;
+      }
+    }
+    &:is(:hover, :focus-within) .card-actions {
+      transform: translate(-20px, -50%);
+      opacity: 1;
+    }
+    .card-content {
+      padding-block: 20px;
+      text-align: center;
+    }
+    & :is(.price, .card-rating, .rating-wrapper) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .del {
+      font-size: $fs-9;
+      font-weight: $fw-400;
+    }
+    .price .span {
+      color: $black;
+      font-weight: $fw-700;
+    }
+    .card-title {
+      color: $black;
+      font-size: $fs-7;
+      font-weight: $fw-500;
+      margin-block-end: 8px;
+      &:is(:hover, :focus) {
+        text-decoration: underline;
+        color: $hoockers-green;
+      }
+    }
+    .rating-wrapper {
+      gap: 2px;
+      color: $hoockers-green;
+      font-size: 15px;
+    }
+    .rating-text {
+      font-size: $fs-8;
+      font-weight: $fw-400;
+      line-height: 1;
+    }
+  }
+}
